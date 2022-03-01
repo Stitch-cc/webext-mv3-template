@@ -1,15 +1,33 @@
 <script setup>
+const emits = defineEmits(['success', 'fail']);
 
+import { loginByToken } from '../api';
+const isLoading = ref(false);
+const debounceFn = useDebounceFn(() => {
+    chrome.identity.getAuthToken({
+        interactive: true,
+    }, token => {
+        if (token) {
+            loginByToken({ token })
+                .then((res) => emits('success', res))
+                .catch((err) => emits('fail', err));
+        }
+        isLoading.value = false;
+    });
+}, 500);
+const onGoogleAuth = () => {
+    isLoading.value = true;
+    debounceFn();
+};
 </script>
 
 <template>
-    <button
-        class="flex items-center w-[100%] bg-blue-500 border border-blue-500 hover:(bg-blue-600) text-light-50 rounded-md transition-all duration-200"
-    >
-        <div class="p-2 flex bg-light-50 rounded-l-md">
-            <flat-color-icons:google class="w-6 h-6" />
+    <button class="btn btn-blue" @click="onGoogleAuth">
+        <div class="btn-icon">
+            <flat-color-icons:google v-if="!isLoading" />
+            <eos-icons:loading v-else />
         </div>
-        <span class="w-100 text-base">Sign in with Google</span>
+        <span>Sign in with Google</span>
     </button>
 </template>
 

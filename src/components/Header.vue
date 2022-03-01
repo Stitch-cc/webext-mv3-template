@@ -14,15 +14,15 @@ import { getSimpleName } from '../config'
             <router-link flex="~" to="/settings"><eva:settings-fill /></router-link>
         </div>
         <router-link
-            class="text-xs text-white"
+            class="text-xs text-light-50"
             to="/subscribe"
             space="x-1"
             flex="~ row"
             align="items-center"
             p="x-2 y-1"
-            border="~ red-400"
+            border="~ red-500"
             rounded="md"
-            gradient="to-br from-red-600 via-red-500 to-yellow-500"
+            gradient="to-br from-orange-400 via-red-500 to-yellow-500"
             cursor="pointer"
         >
 
