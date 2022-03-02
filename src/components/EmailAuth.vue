@@ -1,5 +1,24 @@
 <script setup>
+const emits = defineEmits(['success', 'error']);
+
 const isExpanded = ref(false);
+const isLoading = ref(false);
+
+import { loginByEmail } from '../api';
+const form = reactive({
+    email: '',
+    password: '',
+});
+const debounceFn = useDebounceFn(() => {
+    loginByEmail(form)
+        .then((res) => emits('success', res))
+        .catch((err) => emits('error', err));
+    isLoading.value = false;
+}, 500);
+const onEmailAuth = () => {
+    isLoading.value = true;
+    debounceFn();
+};
 </script>
 
 <template>
@@ -11,21 +30,37 @@ const isExpanded = ref(false);
     </button>
     <div v-else class="space-y-3">
         <p text="sm center">or</p>
-        <div class="input-item text-blue-500">
-            <line-md:email-twotone-alt />
-            <input type="email" placeholder="Enter your email address." autofocus />
-        </div>
-        <div class="input-item text-orange-500">
-            <ant-design:lock-twotone />
-            <input type="password" placeholder="Enter your password." />
-        </div>
-        <button class="btn btn-green">
+        <InputItem
+            v-model="form.email"
+            type="email"
+            placeholder="Enter your email address."
+            autofocus
+            required
+        >
+            <line-md:email-twotone-alt class="text-blue-500" />
+        </InputItem>
+        <InputItem
+            v-model="form.password"
+            type="password"
+            placeholder="Enter your password."
+            required
+        >
+            <ant-design:lock-twotone class="text-orange-500" />
+        </InputItem>
+        <button class="btn btn-green" @click="onEmailAuth">
             <div class="btn-icon">
-                <ic:twotone-security />
+                <ic:twotone-security v-if="!isLoading" />
+                <eos-icons:loading v-else />
             </div>
-            <span>Sign in</span>
+            <span>Sign in with Email</span>
         </button>
-        <p class="font-bold text-dark-50 text-center">New to SaveMyDayApp? <span class="text-current underline underline-current">Create an account.</span></p>
+        <p class="font-bold text-dark-50 text-center">
+            New to SaveMyDayApp?
+            <span
+                class="text-current underline underline-current"
+            >Create an account.</span>
+        </p>
+        {{ form }}
     </div>
 </template>
 

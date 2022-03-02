@@ -1,5 +1,5 @@
 <script setup>
-const emits = defineEmits(['success', 'fail']);
+const emits = defineEmits(['success', 'error']);
 
 import { loginByToken } from '../api';
 const isLoading = ref(false);
@@ -10,7 +10,7 @@ const debounceFn = useDebounceFn(() => {
         if (token) {
             loginByToken({ token })
                 .then((res) => emits('success', res))
-                .catch((err) => emits('fail', err));
+                .catch((err) => emits('error', err));
         }
         isLoading.value = false;
     });
