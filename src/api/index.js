@@ -49,7 +49,6 @@ export function reportLog({ email, name, data }) {
     return $post('/analytics/ReportLog', { phone: email, extension: channel, name, data });
 }
 
-import { useStorage } from '@vueuse/core';
 function parseProfile(res) {
     return new Promise((resolve, reject) => {
         const { code, data, msg } = res;
@@ -69,7 +68,6 @@ function parseProfile(res) {
                 member_time,
                 quota: account
             }
-            useStorage('ext-profile', profile);
             resolve(profile);
         } else {
             reject(res);

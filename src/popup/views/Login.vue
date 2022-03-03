@@ -1,5 +1,8 @@
 <script setup>
+const router = useRouter();
 function handleSuccess(res) {
+    console.log(router);
+    router.push('/');
     console.log('success', res);
 }
 function handleError(error) {

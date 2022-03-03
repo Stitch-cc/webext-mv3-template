@@ -26,14 +26,21 @@
             @apply 'text-blue-500';
         }
     }
+
+    &.btn-red {
+        @apply 'bg-red-500 border border-red-600 shadow-inner shadow-red-400 text-white hover:(bg-red-600 shadow-red-600) transition duration-300';
+        .btn-icon {
+            @apply 'text-red-500';
+        }
+    }
 }
 
 .input-item {
-    @apply 'flex items-center space-x-2 border border-gray-300 text-gray-600 rounded-md overflow-hidden svg:(flex-shrink-0 py-2 px-2 w-10 h-10 border-r border-gray-200 bg-light-200) focus-within:(shadow-sm shadow-current)';
+    @apply 'flex items-center space-x-2 border border-gray-300 text-gray-600 rounded-md overflow-hidden svg:(flex-shrink-0 py-2 px-2 w-10 h-10 border-r border-gray-200 bg-light-200) focus-within:(shadow-sm shadow-gray-300 border-current)';
     @apply 'transition-all duration-300';
 
     &.error {
-        @apply 'shadow-sm shadow-red-500';
+        @apply 'shadow-sm shadow-red-500 border-red-500';
     }
 
     input {

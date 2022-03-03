@@ -1,4 +1,6 @@
 <script setup>
+import { setProfile } from '../store';
+
 const emits = defineEmits(['success', 'error']);
 
 const isExpanded = ref(false);
@@ -11,9 +13,12 @@ const form = reactive({
 });
 const debounceFn = useDebounceFn(() => {
     loginByEmail(form)
-        .then((res) => emits('success', res))
-        .catch((err) => emits('error', err));
-    isLoading.value = false;
+        .then((res) => {
+            setProfile(res);
+            emits('success', res);
+        })
+        .catch((err) => emits('error', err))
+        .finally(() => isLoading.value = false);
 }, 500);
 const onEmailAuth = () => {
     isLoading.value = true;
@@ -60,7 +65,6 @@ const onEmailAuth = () => {
                 class="text-current underline underline-current"
             >Create an account.</span>
         </p>
-        {{ form }}
     </div>
 </template>
 

@@ -1,4 +1,6 @@
 <script setup>
+import { setProfile } from '../store';
+
 const emits = defineEmits(['success', 'error']);
 
 import { loginByToken } from '../api';
@@ -9,10 +11,16 @@ const debounceFn = useDebounceFn(() => {
     }, token => {
         if (token) {
             loginByToken({ token })
-                .then((res) => emits('success', res))
-                .catch((err) => emits('error', err));
+                .then((res) => {
+                    setProfile(res);
+                    emits('success', res);
+                })
+                .catch((err) => emits('error', err))
+                .finally(() => isLoading.value = false);
+        } else {
+            emits('error', err);
+            isLoading.value = false;
         }
-        isLoading.value = false;
     });
 }, 500);
 const onGoogleAuth = () => {
