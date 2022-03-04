@@ -20,6 +20,9 @@ export default defineConfig({
         pink: colors.fuchsia,
         current: '#4BB449'
       },
+      fontSize: {
+        'xs': '13px'
+      },
       borderRadius: {
         md: '0.25rem',
       }

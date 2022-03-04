@@ -1,12 +1,12 @@
 .btn {
-    @apply 'flex items-center w-[100%] border border-gray-400 bg-gray-200 hover:(bg-gray-300) text-black rounded-md';
+    @apply 'flex items-center container border border-gray-400 bg-gray-200 hover:(bg-gray-300) text-black rounded-md';
 
     .btn-icon {
         @apply 'p-2 flex bg-light-100 rounded-l-md children:(w-6 h-6)';
     }
 
     span {
-        @apply 'justify-center w-[100%] text-base';
+        @apply 'justify-center container text-base text-center';
     }
 
     & > :not( .btn-icon) {
@@ -44,6 +44,6 @@
     }
 
     input {
-        @apply 'py-2.5 w-[100%] focus-visible:outline-none text-sm text-gray-600';
+        @apply 'py-2.5 container focus-visible:outline-none text-sm text-gray-600';
     }
 }

@@ -3,6 +3,10 @@ const usename = ref('');
 </script>
 
 <template>
+    <div>
+        <!-- 当用户未登录 instagram 时展示 -->
+        
+    </div>
     <div class="space-y-3">
         <InputItem v-model="username" placeholder="Enter instagram username" required>
             <bx:at />

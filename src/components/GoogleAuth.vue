@@ -6,22 +6,26 @@ const emits = defineEmits(['success', 'error']);
 import { loginByToken } from '../api';
 const isLoading = ref(false);
 const debounceFn = useDebounceFn(() => {
-    chrome.identity.getAuthToken({
-        interactive: true,
-    }, token => {
-        if (token) {
-            loginByToken({ token })
-                .then((res) => {
-                    setProfile(res);
-                    emits('success', res);
-                })
-                .catch((err) => emits('error', err))
-                .finally(() => isLoading.value = false);
-        } else {
-            emits('error', err);
-            isLoading.value = false;
-        }
-    });
+    try {
+        chrome.identity.getAuthToken({
+            interactive: true,
+        }, token => {
+            if (token) {
+                loginByToken({ token })
+                    .then((res) => {
+                        setProfile(res);
+                        emits('success', res);
+                    })
+                    .catch((err) => emits('error', err))
+                    .finally(() => isLoading.value = false);
+            } else {
+                emits('error', err);
+                isLoading.value = false;
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }, 500);
 const onGoogleAuth = () => {
     isLoading.value = true;

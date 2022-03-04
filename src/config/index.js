@@ -17,6 +17,14 @@ const config = {
     ]
 }
 
+export const extContentConfig = {
+    simple_name: '',
+    FAQs_page: 'https://baidu.com/',
+    service_email: 'InsExport@savemydayapp.com'
+}
+
+
+
 export const getSimpleName = () => {
     return config.name.split("-")[0].trim();
 }
