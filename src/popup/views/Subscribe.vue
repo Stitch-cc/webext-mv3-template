@@ -93,19 +93,14 @@ table {
     color: #666;
 
     td {
-        padding: 7px;
+        @apply p-2;
     }
 
     thead {
-        border-bottom: 1px solid #eee;
+        @apply border-b border-gray-200;
 
         th {
-            color: #999;
-            padding-top: 10px;
-
-            &:first-child {
-                width: 40%;
-            }
+            @apply pb-2 text-gray-400 first:(w-[50%]);
         }
     }
 
