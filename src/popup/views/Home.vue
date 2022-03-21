@@ -1,5 +1,5 @@
 <script setup>
-const usename = ref('');
+const username = ref('');
 </script>
 
 <template>
