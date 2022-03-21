@@ -1,6 +1,6 @@
 const config = {
     // 基础配置
-    name: "InsExport - Get Instagram following list",
+    name: "IG Export - Export Instagram Followers",
     description: "A chrome extension made for people who want to export followers and following from Instagram into csv.",
     version: "1.3.0",
 
