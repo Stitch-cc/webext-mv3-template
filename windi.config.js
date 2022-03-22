@@ -21,7 +21,9 @@ export default defineConfig({
         current: '#4BB449'
       },
       fontSize: {
-        'xs': '13px'
+        'xs': '13px',
+        'sm': '14px',
+        'base': '16px',
       },
       borderRadius: {
         md: '0.25rem',

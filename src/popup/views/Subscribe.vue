@@ -1,4 +1,8 @@
 <script setup>
+import { useProfileState } from '../../store';
+import { extContentConfig } from '../../config';
+import { feedback } from '../../api';
+const { email, token, isPro, isSubscribe, member_type, member_time } = useProfileState().value;
 const index = ref('Monthly');
 const sku_list = {
     Monthly: {
@@ -16,12 +20,38 @@ const sku_list = {
 }
 
 const checked = ref(false);
+// 提交订阅
+const sendMessage = inject('sendMessage');
+function onSubscribe() {
+    if (!checked.value) {
+        return sendMessage({ type: 'warning', message: 'You must accept Terms of Service' });
+    }
 
+    window.open("https://www.savemydayapp.com/social/subscribe/redirect.html?priceId=" + sku_list[index.value].priceId + '&email=' + email + '&token=' + token);
+}
+
+// 打开服务条款
+function toAgreement() {
+    window.open(extContentConfig.agreement_url);
+}
+
+// 发送反馈消息
+const message = ref('');
+async function submitFeedback() {
+    if (!message.value) {
+        return sendMessage({ type: 'warning', message: 'Can not submit blank feedback.' });
+    }
+
+    await feedback({ email, message: message.value });
+    message.value = '';
+    sendMessage({ type: 'success', message: 'Thank you for your feedback, we will get in touch with you as soon as possible.' })
+}
 
 </script>
 
 <template>
-    <div>
+    <router-link to="/Unsubscribe">Unsubscribe</router-link>
+    <div v-if="isPro">
         <table class="table">
             <thead>
                 <tr>
@@ -29,7 +59,7 @@ const checked = ref(false);
                     <th>Free</th>
                     <th>
                         <div class="space-x-1 flex justify-center items-center text-current">
-                            <ri:vip-crown-2-fill />
+                            <ant-design:crown-filled />
                             <span>Pro</span>
                             <sup>+</sup>
                         </div>
@@ -55,22 +85,19 @@ const checked = ref(false);
                 <el-radio-button label="Quarterly" />
                 <el-radio-button label="Yearly" />
             </el-radio-group>
-            <div class="space-x-1 my-3 font-bold text-red-500">
+            <div class="space-x-1 mt-3 mb-2 font-bold text-red-500">
                 <sup class="italic align-text-top">$</sup>
                 <span class="text-4xl">{{ sku_list[index].amount }}</span>
                 <span class="text-gray-500">/ {{ index }}</span>
             </div>
+            <p class="font-bold text-red-500">7 days free try pro</p>
             <p class="font-bold text-red-500">7 days money back guarantee</p>
-            <button class="btn btn-blue" @click="onEmailAuth">
-                <div class="btn-icon">
-                    <ic:round-shopping-cart v-if="!isLoading" />
-                    <eos-icons:loading v-else />
-                </div>
-                <span>Subscribe</span>
-            </button>
-            <el-checkbox v-model="checked" class="!text-gray-500">
-                I accept
-                <a class="text-blue-500" href>Terms of Service</a>
+            <Button class="mt-1" type="primary" text="Subscribe" :onclick="onSubscribe">
+                <ic:round-shopping-cart />
+            </Button>
+            <el-checkbox v-model="checked">
+                <span class="!text-gray-500 mr-1">I accept</span>
+                <a class="text-blue-500" @click="toAgreement">Terms of Service</a>
             </el-checkbox>
             <p class="text-gray-600 text-xs text-center">
                 <ant-design:lock-twotone class="text-green-500 align-text-top" />
@@ -79,7 +106,32 @@ const checked = ref(false);
                     <strong>Stripe</strong> to process purchases and do not know your coupon details.
                 </span>
             </p>
-            <img class="flex" src="/src/assets/images/secure-stripe-payment.jpeg" alt="" srcset="">
+            <img class="flex" src="/src/assets/images/secure-stripe-payment.jpeg" alt srcset />
+        </div>
+    </div>
+    <div v-else class="space-y-2 flex flex-col items-center text-gray-600">
+        <ant-design:heart-twotone class="w-8 h-8 text-red-500" />
+        <p class="mt-2 text-xs font-bold">Thanks for the support!</p>
+        <p class="text-base">
+            Your
+            <strong class="text-current">{{ member_type }}</strong>
+            membership will {{ subscribeStatus ? 'renewed' : 'end' }} on
+        <p class="text-sm text-center"><strong>{{ new Date(member_time).toLocaleString() }}</strong></p>
+        </p>
+        <el-input v-model="message" type="textarea" :rows="3" maxlength="200" show-word-limit
+            placeholder="Any problems and suggestions encountered in the process of use" />
+        <Button type="primary" text="Submit Feedback" :onclick="submitFeedback">
+            <bi:send-fill />
+        </Button>
+        <div class="text-xs text-center">
+            <div v-if="subscribeStatus">
+                <p>
+                    <router-link to="/Unsubscribe" class="text-blue-500">Click here</router-link>
+                    to cancel subscription.
+                </p>
+                <p>Cancellation will take effect immediately.</p>
+            </div>
+            <span v-else>You have successfully unsubscribed.</span>
         </div>
     </div>
 </template>

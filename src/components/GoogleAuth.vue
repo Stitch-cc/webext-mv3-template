@@ -1,46 +1,38 @@
 <script setup>
 import { setProfile } from '../store';
+import { loginByToken } from '../api';
 
 const emits = defineEmits(['success', 'error']);
-
-import { loginByToken } from '../api';
-const isLoading = ref(false);
-const debounceFn = useDebounceFn(() => {
+const onGoogleAuth = async () => {
     try {
-        chrome.identity.getAuthToken({
-            interactive: true,
-        }, token => {
-            if (token) {
-                loginByToken({ token })
-                    .then((res) => {
-                        setProfile(res);
-                        emits('success', res);
-                    })
-                    .catch((err) => emits('error', err))
-                    .finally(() => isLoading.value = false);
-            } else {
-                emits('error', err);
-                isLoading.value = false;
-            }
+        return new Promise((resolve, reject) => {
+            chrome.identity.getAuthToken({
+                interactive: true,
+            }, token => {
+                if (token) {
+                    loginByToken({ token })
+                        .then((res) => {
+                            setProfile(res);
+                            resolve(res);
+                            emits('success', res);
+                        })
+                } else {
+                    reject(new Error('Google Auth Failed'));
+                }
+
+            });
         });
     } catch (error) {
+        emits('error', error);
         console.log(error);
     }
-}, 500);
-const onGoogleAuth = () => {
-    isLoading.value = true;
-    debounceFn();
 };
 </script>
 
 <template>
-    <button class="btn btn-blue" @click="onGoogleAuth">
-        <div class="btn-icon">
-            <flat-color-icons:google v-if="!isLoading" />
-            <eos-icons:loading v-else />
-        </div>
-        <span>Sign in with Google</span>
-    </button>
+    <Button type="primary" text="Sign in with Google" @click="onGoogleAuth">
+        <flat-color-icons:google />
+    </Button>
 </template>
 
 <style lang='scss' scoped>

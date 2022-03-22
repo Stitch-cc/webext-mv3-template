@@ -1,5 +1,5 @@
 <script setup>
-import { clearProfile, useProfileState } from '../../store'
+import { clearProfile, useProfileState, useSettingState } from '../../store'
 const router = useRouter();
 function onSignOut() {
     clearProfile();
@@ -7,39 +7,35 @@ function onSignOut() {
 }
 
 const { email } = useProfileState().value;
-const intervalTime = ref('8');
-const fields = ref([]);
+const setting = useSettingState().value;
+console.log(setting);
 </script>
 
 <template>
     <div class="space-y-2">
-        <ul class="space-y-3 font-bold">
+        <ul class="space-y-3 text-base text-gray-700">
             <li>
                 <p
-                    class="mb-2 font-bold"
+                    class="mb-2"
                 >1.Interval between the requests to get followers/following(s).</p>
-                <el-radio-group
-                    v-model="intervalTime"
-                    size="small"
-                    class="space-x-2 children:(!mr-0)"
-                >
-                    <el-radio label="4" border>4s</el-radio>
-                    <el-radio label="5" border>5s</el-radio>
-                    <el-radio label="8" border>8s</el-radio>
-                    <el-radio label="9" border>9s</el-radio>
-                    <el-radio label="10" border>10s</el-radio>
+                <el-radio-group v-model="setting.intervalTime">
+                    <el-radio-button :label="4">4s</el-radio-button>
+                    <el-radio-button :label="5">5s</el-radio-button>
+                    <el-radio-button :label="8">8s</el-radio-button>
+                    <el-radio-button :label="9">9s</el-radio-button>
+                    <el-radio-button :label="10">10s</el-radio-button>
                 </el-radio-group>
             </li>
             <li>
                 <p>2.Select the fields you want to export.</p>
-                <el-checkbox-group v-model="fields" size="small" class="space-y-2 children:(!mr-2)">
-                    <el-checkbox label="User ID" value="user_id" border checked />
-                    <el-checkbox label="Username" value="username" border checked />
-                    <el-checkbox label="Fullname" value="fullname" border checked />
-                    <el-checkbox label="Follow by you" value="username" border checked />
-                    <el-checkbox label="Is verified" value="username" border checked />
-                    <el-checkbox label="Profile URL" value="username" border checked />
-                    <el-checkbox label="Avatar URL" value="username" border checked />
+                <el-checkbox-group v-model="setting.fields" size="" class="space-y-1 children:(!mr-1)">
+                    <el-checkbox label="id" border checked >User ID</el-checkbox>
+                    <el-checkbox label="username" border checked >Username</el-checkbox>
+                    <el-checkbox label="full_name" border checked >Fullname</el-checkbox>
+                    <el-checkbox label="followed_by_viewer" border checked >Follow by you</el-checkbox>
+                    <el-checkbox label="is_verified" border checked >Is verified</el-checkbox>
+                    <el-checkbox label="profile_url" border checked >Profile URL</el-checkbox>
+                    <el-checkbox label="profile_pic_url" border checked >Avatar URL</el-checkbox>
                 </el-checkbox-group>
             </li>
         </ul>

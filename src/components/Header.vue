@@ -6,12 +6,12 @@ const isAuthenticated = useProfileState();
 </script>
 
 <template>
-    <div flex="~ row" justify="between" align="items-center" p="p-2">
+    <div class="flex flex-row items-center justify-between p-2 border-b border-gray-200">
         <div class="space-x-1 flex flex-row items-center text-base text-current font-bold">
             <vscode-icons:file-type-excel class="w-6 h-6" />
             <span>{{ getSimpleName() }}</span>
         </div>
-        <div class="space-x-2 flex flex-row items-center text-base text-gray-700 font-bold children:flex">
+        <div class="flex flex-row items-center text-base text-gray-700 font-bold children:(flex items-center p-1 h-6 cursor-pointer)">
             <router-link to="/"><fa:home /></router-link>
             <router-link to="/about"><eva:info-fill /></router-link>
             <router-link v-if="isAuthenticated" to="/settings"><eva:settings-fill /></router-link>
@@ -23,7 +23,7 @@ const isAuthenticated = useProfileState();
             gradient="to-br from-orange-400 via-red-500 to-yellow-500"
         >
 
-            <ri:vip-crown-2-fill />
+            <ant-design:crown-filled />
             <span>Pro</span>
             <sup>+</sup>
         </router-link>

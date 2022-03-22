@@ -18,9 +18,10 @@ const config = {
 }
 
 export const extContentConfig = {
-    simple_name: '',
+    simple_name: 'IG Export',
     FAQs_page: 'https://baidu.com/',
-    service_email: 'InsExport@savemydayapp.com'
+    service_email: 'IG_Export@savemydayapp.com',
+    agreement_url: 'https://oneclickbooster.com/terms-of-service/'
 }
 
 

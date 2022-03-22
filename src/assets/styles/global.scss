@@ -13,24 +13,31 @@
         @apply 'p-1.5';
     }
 
-    &.btn-green {
+    &.btn-success {
         @apply 'bg-green-500 border border-green-600 shadow-inner shadow-green-400 text-white hover:(bg-green-600 shadow-green-700) transition duration-300';
         .btn-icon {
             @apply 'text-green-500';
         }
     }
 
-    &.btn-blue {
+    &.btn-primary {
         @apply 'bg-blue-500 border border-blue-600 shadow-inner shadow-blue-400 text-white hover:(bg-blue-600 shadow-blue-700) transition duration-300';
         .btn-icon {
             @apply 'text-blue-500';
         }
     }
 
-    &.btn-red {
+    &.btn-danger {
         @apply 'bg-red-500 border border-red-600 shadow-inner shadow-red-400 text-white hover:(bg-red-600 shadow-red-600) transition duration-300';
         .btn-icon {
             @apply 'text-red-500';
+        }
+    }
+
+    &.btn-warning {
+        @apply 'bg-orange-500 border border-orange-600 shadow-inner shadow-orange-400 text-white hover:(bg-orange-600 shadow-orange-600) transition duration-300';
+        .btn-icon {
+            @apply 'text-orange-500';
         }
     }
 }

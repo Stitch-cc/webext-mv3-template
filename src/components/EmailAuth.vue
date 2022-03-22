@@ -1,38 +1,41 @@
 <script setup>
 import { setProfile } from '../store';
+import { loginByEmail } from '../api';
 
 const emits = defineEmits(['success', 'error']);
 
 const isExpanded = ref(false);
-const isLoading = ref(false);
-
-import { loginByEmail } from '../api';
 const form = reactive({
     email: '',
     password: '',
 });
-const debounceFn = useDebounceFn(() => {
-    loginByEmail(form)
-        .then((res) => {
-            setProfile(res);
-            emits('success', res);
-        })
-        .catch((err) => emits('error', err))
-        .finally(() => isLoading.value = false);
-}, 500);
-const onEmailAuth = () => {
-    isLoading.value = true;
-    debounceFn();
+const sendMessage = inject('sendMessage');
+const onEmailAuth = async () => {
+    if (!form.email || !form.password) {
+        sendMessage({
+            type: 'error',
+            message: 'Please enter your email and password',
+        });
+        return;
+    }
+    
+    try {
+        const res = await loginByEmail(form)
+        setProfile(res);
+        emits('success', res);
+    } catch (error) {
+        sendMessage({
+            type: 'error',
+            message: error.message,
+        });
+    }
 };
 </script>
 
 <template>
-    <button v-if="!isExpanded" class="btn btn-green" @click="isExpanded = true">
-        <div class="btn-icon text-green-500">
-            <line-md:email-twotone-alt />
-        </div>
-        <span>Sign in with Email</span>
-    </button>
+    <Button v-if="!isExpanded" type="success" text="Sign in with Email" @click="isExpanded = true">
+        <line-md:email-twotone-alt />
+    </Button>
     <div v-else class="space-y-3">
         <p text="sm center">or</p>
         <InputItem
@@ -52,13 +55,9 @@ const onEmailAuth = () => {
         >
             <ant-design:lock-twotone class="text-orange-500" />
         </InputItem>
-        <button class="btn btn-green" @click="onEmailAuth">
-            <div class="btn-icon">
-                <ic:twotone-security v-if="!isLoading" />
-                <eos-icons:loading v-else />
-            </div>
-            <span>Sign in with Email</span>
-        </button>
+        <Button type="success" text="Sign in with Email" @click="onEmailAuth">
+            <ic:twotone-security />
+        </Button>
         <p class="font-bold text-dark-50 text-center">
             New to SaveMyDayApp?
             <span
