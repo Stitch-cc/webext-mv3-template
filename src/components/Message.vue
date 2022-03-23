@@ -41,7 +41,7 @@ bus.on((data) => {
 
 <style lang="scss" scoped>
 .popup-message {
-    @apply 'absolute top-6 left-1/2 transform -translate-x-1/2 opacity-0';
+    @apply 'absolute top-6 left-1/2 -z-1 transform -translate-x-1/2 opacity-0';
     @apply 'box-border space-x-2 px-3 py-1 w-9/10';
     @apply 'border rounded-md text-xs';
     @apply 'svg:(align-text-top)';
@@ -49,7 +49,7 @@ bus.on((data) => {
     @apply 'md:(py-2 w-auto text-base)';
     
     &.show-message {
-        @apply 'top-12 opacity-100';
+        @apply 'top-12 opacity-100 z-10';
         @apply 'md:(top-13)'
     }
 

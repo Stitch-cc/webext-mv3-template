@@ -50,7 +50,7 @@ async function submitFeedback() {
 </script>
 
 <template>
-    <div v-if="isPro" md="w-500px">
+    <div v-if="!isPro" md="w-500px">
         <table class="table">
             <thead>
                 <tr>
