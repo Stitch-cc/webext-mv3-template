@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 
 // vue 自动化插件
 import AutoImport from 'unplugin-auto-import/vite'
@@ -15,7 +16,8 @@ import manifest from './src/manifest.json'
 import { crx } from 'rollup-plugin-chrome-extension'
 
 // BUG 插件打包异常
-if (process.env.NODE_ENV === 'production') {
+const isProd = process.env.NODE_ENV === 'production'
+if (isProd) {
   manifest.action.default_popup = '/' + manifest.action.default_popup;
 }
 
@@ -26,6 +28,25 @@ Object.assign(manifest, config);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'src'),
+    }
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        // dashboard: 'dashboard/index.html',
+      }
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        charset: false,
+      }
+    }
+  },
   plugins: [
     vue(),
     crx({ manifest }),

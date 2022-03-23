@@ -10,7 +10,7 @@ function handleError(error) {
 </script>
 
 <template>
-<div space="y-4">
+<div space="y-4" md="w-500px">
     <GoogleAuth @success="handleSuccess" @error="handleError"/>
     <EmailAuth @success="handleSuccess" @error="handleError"/>
 </div>

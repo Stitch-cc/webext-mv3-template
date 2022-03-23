@@ -46,9 +46,11 @@ bus.on((data) => {
     @apply 'border rounded-md text-xs';
     @apply 'svg:(align-text-top)';
     @apply 'transition-all duration-300';
+    @apply 'md:(py-2 w-auto text-base)';
     
     &.show-message {
         @apply 'top-12 opacity-100';
+        @apply 'md:(top-13)'
     }
 
     &.message-info {

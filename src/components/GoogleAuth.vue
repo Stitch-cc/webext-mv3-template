@@ -1,6 +1,6 @@
 <script setup>
-import { setProfile } from '../store';
-import { loginByToken } from '../api';
+import { setProfile } from '~/store';
+import { loginByToken } from '~/api';
 
 const emits = defineEmits(['success', 'error']);
 const onGoogleAuth = async () => {

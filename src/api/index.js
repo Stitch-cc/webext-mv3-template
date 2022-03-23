@@ -9,29 +9,34 @@ service.defaults.headers.post["Content-Type"] == 'application/x-www-form-urlenco
 import { getSimpleName } from '../config';
 const channel = getSimpleName();
 
-export function register({ email, code, password }) {
-    return $post('/user/register', { phone: email, code, password, channel }).then(parseProfile);
+export async function register({ email, code, password }) {
+    const res = await $post('/user/register', { phone: email, code, password, channel });
+    return parseProfile(res);
 }
 
 export function sendCodeToEmail({ email }) {
     return $post('/user/sendEmail', { email });
 }
 
-export function loginByEmail({ email, password }) {
-    return $post('/user/login', { phone: email, password, channel }).then(parseProfile);
+export async function loginByEmail({ email, password }) {
+    const res = await $post('/user/login', { phone: email, password, channel });
+    return parseProfile(res);
 }
 
-export function loginByToken({ token }) {
-    return $get('/user/google', { code: token, channel }).then(parseProfile);
+export async function loginByToken({ token }) {
+    const res = await $get('/user/google', { code: token, channel });
+    return parseProfile(res);
 }
 
-export function getProfileByEmail({ email, token }) {
-    return $post('/user/phoneProfile', { phone: email, token, channel }).then(parseProfile);
+export async function getProfileByEmail({ email, token }) {
+    const res = await $post('/user/phoneProfile', { phone: email, token, channel });
+    return parseProfile(res);
 }
 
-export function updateAccount({ email, token, value }) {
+export async function updateAccount({ email, token, value }) {
     value = value > 0 ? -value : value;
-    return $post('/user/updateAccount', { phone: email, token, value, channel }).then(parseProfile);
+    const res = await $post('/user/updateAccount', { phone: email, token, value, channel });
+    return parseProfile(res);
 }
 
 export function unsubscribe({ grade, email, token }) {

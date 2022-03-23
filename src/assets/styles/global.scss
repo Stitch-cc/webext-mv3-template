@@ -2,7 +2,7 @@
     @apply 'flex items-center container border border-gray-400 bg-gray-200 hover:(bg-gray-300) text-black rounded-md';
 
     .btn-icon {
-        @apply 'p-1.5 flex bg-light-100 rounded-l-md children:(w-6 h-6)';
+        @apply 'p-1.5 flex bg-light-100 rounded-l-md svg:(w-6 h-6)';
     }
 
     span {

@@ -1,5 +1,5 @@
 <script setup>
-import { clearProfile, useProfileState, useSettingState } from '../../store'
+import { clearProfile, useProfileState, useSettingState } from '~/store'
 const router = useRouter();
 function onSignOut() {
     clearProfile();
@@ -12,7 +12,7 @@ console.log(setting);
 </script>
 
 <template>
-    <div class="space-y-2">
+    <div class="space-y-2" md="w-500px">
         <ul class="space-y-3 text-base text-gray-700">
             <li>
                 <p

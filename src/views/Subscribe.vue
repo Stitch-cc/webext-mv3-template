@@ -1,7 +1,7 @@
 <script setup>
-import { useProfileState } from '../../store';
-import { extContentConfig } from '../../config';
-import { feedback } from '../../api';
+import { useProfileState } from '~/store';
+import { extContentConfig } from '~/config';
+import { feedback } from '~/api';
 const { email, token, isPro, isSubscribe, member_type, member_time } = useProfileState().value;
 const index = ref('Monthly');
 const sku_list = {
@@ -50,8 +50,7 @@ async function submitFeedback() {
 </script>
 
 <template>
-    <router-link to="/Unsubscribe">Unsubscribe</router-link>
-    <div v-if="isPro">
+    <div v-if="isPro" md="w-500px">
         <table class="table">
             <thead>
                 <tr>
@@ -109,13 +108,13 @@ async function submitFeedback() {
             <img class="flex" src="/src/assets/images/secure-stripe-payment.jpeg" alt srcset />
         </div>
     </div>
-    <div v-else class="space-y-2 flex flex-col items-center text-gray-600">
+    <div v-else class="space-y-2 flex flex-col items-center text-gray-600" md="w-500px">
         <ant-design:heart-twotone class="w-8 h-8 text-red-500" />
         <p class="mt-2 text-xs font-bold">Thanks for the support!</p>
         <p class="text-base">
             Your
             <strong class="text-current">{{ member_type }}</strong>
-            membership will {{ subscribeStatus ? 'renewed' : 'end' }} on
+            membership will {{ isSubscribe ? 'renewed' : 'end' }} on
         <p class="text-sm text-center"><strong>{{ new Date(member_time).toLocaleString() }}</strong></p>
         </p>
         <el-input v-model="message" type="textarea" :rows="3" maxlength="200" show-word-limit
@@ -124,7 +123,7 @@ async function submitFeedback() {
             <bi:send-fill />
         </Button>
         <div class="text-xs text-center">
-            <div v-if="subscribeStatus">
+            <div v-if="isSubscribe">
                 <p>
                     <router-link to="/Unsubscribe" class="text-blue-500">Click here</router-link>
                     to cancel subscription.

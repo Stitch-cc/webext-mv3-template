@@ -1,6 +1,6 @@
 <script setup>
-import { setProfile } from '../store';
-import { loginByEmail } from '../api';
+import { setProfile } from '~/store';
+import { loginByEmail } from '~/api';
 
 const emits = defineEmits(['success', 'error']);
 

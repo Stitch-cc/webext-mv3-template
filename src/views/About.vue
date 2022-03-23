@@ -1,5 +1,5 @@
 <script setup>
-import { extContentConfig } from '../../config';
+import { extContentConfig } from '~/config';
 const { service_email, simple_name, FAQs_page } = extContentConfig;
 
 function toFAQs() {
@@ -8,8 +8,8 @@ function toFAQs() {
 </script>
 
 <template>
-    <div class="space-y-3">
-        <p class="space-x-1 flex flex-row items-center text-base text-gray-800">
+    <div class="space-y-3" md="w-500px">
+        <p class="space-x-1 flex flex-row items-center text-base text-gray-800" md="w-500px">
             <ant-design:question-circle-twotone class="text-blue-500" />
             <span>FAQs and Troubleshootings</span>
         </p>
