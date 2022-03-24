@@ -2,7 +2,7 @@
 import { getInnerAssetUrl, windowOpen, getCookie } from "~/libs/ChromeShims";
 const sendMessage = inject('sendMessage');
 
-const isLogined = ref(false);
+const isLogined = ref(true);
 onBeforeMount(async () => {
     isLogined.value = Boolean(await getCookie('https://www.instagram.com', 'ds_user_id'));
 })

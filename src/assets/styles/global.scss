@@ -9,6 +9,10 @@
         @apply 'justify-center container text-sm text-center';
     }
 
+    &[disabled] {
+        @apply '!bg-gray-200 shadow-gray-50 cursor-not-allowed';
+    }
+
     & > :not( .btn-icon) {
         @apply 'p-1.5';
     }

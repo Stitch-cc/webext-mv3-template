@@ -1,5 +1,4 @@
 import { useAxios } from "./axios";
-import { ElNotification } from "element-plus";
 
 const { service, $get, $post } = useAxios();
 // 基础配置
@@ -53,11 +52,6 @@ export function getFollowers(id, first, after) {
         }).then((res) => {
             resolve(res.data.user.edge_followed_by);
         }).catch(e => {
-            ElNotification.error({
-                title: 'Network Error',
-                message: 'Too many requests limit reached from instagram, please try again after 1h from ' + new Date().toLocaleString(),
-                duration: 0,
-            });
             reject(e);
         });
     });
@@ -72,12 +66,6 @@ export function getFollowing(id, first, after) {
         }).then((res) => {
             resolve(res.data.user.edge_follow);
         }).catch((e) => {
-            // sendError('ines_error', { name: 'getFollowing', data: e.message });
-            ElNotification.error({
-                title: 'Network Error',
-                message: 'Too many requests limit reached from instagram, please try again after 1h from ' + new Date().toLocaleString(),
-                duration: 0,
-            });
             reject(e);
         });
     });

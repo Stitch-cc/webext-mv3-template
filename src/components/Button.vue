@@ -8,6 +8,10 @@ const { onclick } = defineProps({
         type: String,
         default: '',
     },
+    disabled: {
+        type: Boolean,
+        default: false,
+    },
     onclick: {
         type: Function,
         default: () => { },
@@ -30,7 +34,7 @@ const onClick = () => {
 </script>
 
 <template>
-    <button :class="`btn btn-${type}`" @click="onClick">
+    <button :class="`btn btn-${type}`" :disabled="disabled" @click="onClick">
         <div class="btn-icon">
             <slot v-if="!isLoading">
                 <flat-color-icons:google />

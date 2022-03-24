@@ -10,7 +10,7 @@ const config = {
         "client_id": "695891906885-mjb19vbpj9kibbtm5lalth50ptv5mnpe.apps.googleusercontent.com",
         "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
     },
-    "host_permissions": [
+    host_permissions: [
         "*://*.instagram.com/*"
     ],
     permissions: [

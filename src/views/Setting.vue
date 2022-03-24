@@ -7,8 +7,22 @@ function onSignOut() {
 }
 
 const { email } = useProfileState().value;
-const setting = useSettingState().value;
-console.log(setting);
+const { intervalTime, fields } = useSettingState().value;
+const _fields = computed(() => {
+    let arr = [];
+    for (const key in fields) {
+        if (Object.hasOwnProperty.call(fields, key)) {
+            const field = fields[key];
+            if (field.value) {
+                arr.push(key);
+            }
+        }
+    }
+    return arr;
+});
+watch(_fields, (newValue, oldValue) => {
+    console.log(newValue, oldValue);
+})
 </script>
 
 <template>
@@ -18,7 +32,7 @@ console.log(setting);
                 <p
                     class="mb-2"
                 >1.Interval between the requests to get followers/following(s).</p>
-                <el-radio-group v-model="setting.intervalTime">
+                <el-radio-group v-model="intervalTime">
                     <el-radio-button :label="4">4s</el-radio-button>
                     <el-radio-button :label="5">5s</el-radio-button>
                     <el-radio-button :label="8">8s</el-radio-button>
@@ -28,7 +42,7 @@ console.log(setting);
             </li>
             <li>
                 <p>2.Select the fields you want to export.</p>
-                <el-checkbox-group v-model="setting.fields" size="" class="space-y-1 children:(!mr-1)">
+                <el-checkbox-group v-model="_fields" size="" class="space-y-1 children:(!mr-1)">
                     <el-checkbox label="id" border checked >User ID</el-checkbox>
                     <el-checkbox label="username" border checked >Username</el-checkbox>
                     <el-checkbox label="full_name" border checked >Fullname</el-checkbox>
