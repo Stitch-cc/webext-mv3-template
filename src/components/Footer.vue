@@ -4,7 +4,7 @@ const version = config.version, name = getSimpleName();
 </script>
 
 <template>
-    <div class="space-y-1 py-3 flex flex-col justify-center items-center text-sm font-bold text-gray-600 border-t border-gray-200">
+    <div class="space-y-1 py-3 flex flex-col justify-center items-center text-sm font-bold text-gray-600 border-t border-gray-200" md="min-w-1200px mx-auto">
         <p>
             ©2021
             <a :href="`mailto:${name}@oneclickbooster.com`">{{ name }}</a>

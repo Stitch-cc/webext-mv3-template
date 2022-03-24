@@ -6,8 +6,10 @@ import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+
 
 // UI 框架插件
 import WindiCSS from 'vite-plugin-windicss'
@@ -36,7 +38,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        // dashboard: 'dashboard/index.html',
+        dashboard: resolve(__dirname, 'dashboard', 'index.html')
       }
     }
   },
@@ -64,6 +66,9 @@ export default defineConfig({
           prefix: false,
         })
       ]
+    }),
+    createStyleImportPlugin({
+      resolves: [ElementPlusResolve()]
     }),
     Icons(),
     WindiCSS()

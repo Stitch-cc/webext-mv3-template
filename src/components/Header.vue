@@ -8,7 +8,7 @@ const isAuthenticated = useProfileState();
 <template>
     <div
         class="flex flex-row items-center justify-between p-2 border-b border-gray-200"
-        md="w-4/5 max-w-1200px mx-auto border-none"
+        md="w-1200px mx-auto border-none"
     >
         <div class="space-x-1 flex flex-row items-center text-base text-current font-bold">
             <vscode-icons:file-type-excel class="w-6 h-6" />

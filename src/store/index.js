@@ -7,7 +7,7 @@ const setting = useGlobalState('setting', {
         id: { name: "User ID", value: true },
         username: { name: "Username", value: true },
         full_name: { name: "Fullname", value: true },
-        followed_by_viewer: { name: "Follow by you", value: true },
+        followed_by_viewer: { name: "Followed by you", value: true },
         is_verified: { name: "Is verified", value: true },
         profile_url: { name: "Profile URL", value: true },
         profile_pic_url: { name: "Avatar URL", value: true },

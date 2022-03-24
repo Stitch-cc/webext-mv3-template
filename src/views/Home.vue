@@ -22,14 +22,14 @@ const checkUsername = () => {
 // 通过获取路由元数据，控制跳转方式
 const { useWindowNavigate } = useRoute().meta;
 const router = useRouter();
-const onclick = (type) => {
+const onclick = async (type) => {
     if (!checkUsername()) return;
 
     if (useWindowNavigate) {
         let url = getInnerAssetUrl('dashboard/index.html#/Export?type=' + type + '&username=' + username.value);
-        windowOpen(url);
+        await windowOpen(url);
     } else {
-        router.push({
+        await router.push({
             name: "Export",
             params: { type, username: username.value },
         })
@@ -56,10 +56,10 @@ const onclick = (type) => {
         <InputItem v-model="username" placeholder="Enter instagram username" required>
             <bx:at />
         </InputItem>
-        <Button type="primary" text="Export Followers" :onclick="() => onclick('followers')">
+        <Button type="primary" text="Export Followers" :onclick="async () => onclick('followers')">
             <ph:users-three-duotone class="text-green-500" />
         </Button>
-        <Button type="success" text="Export Following" :onclick="() => onclick('following')">
+        <Button type="success" text="Export Following" :onclick="async () => onclick('following')">
             <ant-design:heart-twotone class="text-red-500" />
         </Button>
     </div>
