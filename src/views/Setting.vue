@@ -7,7 +7,7 @@ function onSignOut() {
 }
 
 const { email } = useProfileState().value;
-const { intervalTime, fields } = useSettingState().value;
+const setting = useSettingState().value;
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const { intervalTime, fields } = useSettingState().value;
         <ul class="space-y-3 text-base text-gray-700">
             <li>
                 <p class="mb-2">1.Interval between the requests to get followers/following(s).</p>
-                <el-radio-group v-model="intervalTime">
+                <el-radio-group v-model="setting.intervalTime">
                     <el-radio-button :label="4">4s</el-radio-button>
                     <el-radio-button :label="5">5s</el-radio-button>
                     <el-radio-button :label="8">8s</el-radio-button>
@@ -27,7 +27,7 @@ const { intervalTime, fields } = useSettingState().value;
                 <p>2.Select the fields you want to export.</p>
                 <div class="space-y-1 children:(!mr-1)">
                     <el-checkbox
-                        v-for="(field, key) in fields"
+                        v-for="(field, key) in setting.fields"
                         v-model="field.value"
                         :label="key"
                         border

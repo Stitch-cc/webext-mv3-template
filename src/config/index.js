@@ -21,8 +21,8 @@ const config = {
 }
 
 export const extContentConfig = {
-    simple_name: 'IG Export',
-    FAQs_page: 'https://baidu.com/',
+    simple_name: 'InsExport',
+    FAQs_page: 'https://savemydayapp.com/export-instagram-following-faq/',
     service_email: 'IG_Export@savemydayapp.com',
     agreement_url: 'https://oneclickbooster.com/terms-of-service/'
 }
@@ -30,7 +30,7 @@ export const extContentConfig = {
 
 
 export const getSimpleName = () => {
-    return config.name.split("-")[0].trim();
+    return extContentConfig.simple_name;
 }
 
 export default config;

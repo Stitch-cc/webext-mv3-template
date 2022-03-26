@@ -23,8 +23,14 @@ const createRoutes = () => {
         {
             path: '/login',
             name: 'Login',
-            meta: { requiresAuth: false },
+            meta: { requiresAuth: false, useWindowNavigate: false },
             component: () => import('~/views/Login.vue')
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            meta: { requiresAuth: false },
+            component: () => import('~/views/Register.vue')
         },
         {
             path: '/subscribe',

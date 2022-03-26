@@ -23,7 +23,7 @@ const createRoutes = () => {
         {
             path: '/login',
             name: 'Login',
-            meta: { requiresAuth: false },
+            meta: { requiresAuth: false, useWindowNavigate: true },
             component: () => import('~/views/Login.vue')
         },
         {

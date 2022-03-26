@@ -47,7 +47,7 @@
 }
 
 .input-item {
-    @apply 'flex items-center space-x-2 border border-gray-300 text-gray-600 rounded-md overflow-hidden svg:(flex-shrink-0 py-2 px-2 w-10 h-10 border-r border-gray-200 bg-light-200) focus-within:(shadow-sm shadow-gray-300 border-current)';
+    @apply 'flex items-center space-x-2 border border-gray-300 text-gray-600 rounded-md overflow-hidden svg:(flex-shrink-0 py-2 px-2 w-9.5 h-9.5 border-r border-gray-200 bg-light-200) focus-within:(shadow-sm shadow-gray-300 border-current)';
     @apply 'transition-all duration-300';
 
     &.error {
