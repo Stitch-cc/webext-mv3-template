@@ -35,6 +35,10 @@ const onclick = async (type) => {
         })
     }
 }
+
+// 统计功能
+const reportLog = inject('reportLog');
+reportLog('home_page');
 </script>
 
 <template>

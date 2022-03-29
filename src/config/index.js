@@ -23,8 +23,9 @@ const config = {
 export const extContentConfig = {
     simple_name: 'InsExport',
     FAQs_page: 'https://savemydayapp.com/export-instagram-following-faq/',
-    service_email: 'IG_Export@savemydayapp.com',
-    agreement_url: 'https://oneclickbooster.com/terms-of-service/'
+    service_email: 'IGExport@savemydayapp.com',
+    agreement_url: 'https://oneclickbooster.com/terms-of-service/',
+    reportPrefix: 'IGExport',
 }
 
 

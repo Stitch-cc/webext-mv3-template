@@ -1,8 +1,12 @@
 <script setup>
 // 获取用户会员时间，查询剩余天数
 import { useProfileState } from '~/store';
-import { feedback, reportLog, unsubscribe } from '~/api';
+import { feedback, unsubscribe } from '~/api';
 const { grade, email, token, member_time } = useProfileState().value;
+
+// 统计功能
+const reportLog = inject('reportLog');
+reportLog('unsubscribe_page');
 
 const day = computed(() => Math.ceil((new Date(member_time).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)));
 const config = reactive({
@@ -30,11 +34,9 @@ async function handleUnsubscribe() {
             if (config.feedback != '') {
                 await feedback({ email, message: config.feedback });
             }
-            await reportLog({
-                email, name: 'unsubscribe', data: {
-                    reason: config.reason,
-                    feedback: config.feedback
-                }
+            await reportLog('unsubscribe_button', {
+                reason: config.reason,
+                feedback: config.feedback
             })
             try {
                 await unsubscribe({ grade, email, token });

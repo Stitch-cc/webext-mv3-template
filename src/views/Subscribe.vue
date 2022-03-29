@@ -3,6 +3,11 @@ import { useProfileState } from '~/store';
 import { extContentConfig } from '~/config';
 import { feedback } from '~/api';
 const { email, token, isPro, isSubscribe, member_type, member_time } = useProfileState().value;
+
+// 统计功能
+const reportLog = inject('reportLog');
+reportLog('subscribe_page');
+
 const index = ref('Monthly');
 const sku_list = {
     Monthly: {
@@ -26,7 +31,8 @@ function onSubscribe() {
     if (!checked.value) {
         return sendMessage({ type: 'warning', message: 'You must accept Terms of Service' });
     }
-
+    
+    reportLog('subscribe_button');
     window.open("https://www.savemydayapp.com/social/subscribe/redirect.html?priceId=" + sku_list[index.value].priceId + '&email=' + email + '&token=' + token);
 }
 
