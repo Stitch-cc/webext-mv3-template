@@ -5,7 +5,7 @@ import plugin from 'windicss/plugin'
 export default defineConfig({
   // darkMode: 'class', // or 'media'
   extract: {
-    include: ['src/**/*.{vue,html,jsx,tsx}', 'dashboard/**/*.{vue,html,jsx,tsx}', 'popup/**/*.{vue,html,jsx,tsx}',],
+    include: ['**/*.{vue,html,jsx,tsx}'],
     exclude: ['node_modules', '.git'],
   },
   attributify: true,
