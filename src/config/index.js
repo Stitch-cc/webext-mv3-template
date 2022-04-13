@@ -1,8 +1,8 @@
 const config = {
     // 基础配置
-    name: "IG Export - Export Instagram Followers",
-    description: "A chrome extension made for people who want to export followers and following from Instagram into csv.",
-    version: "2.1.0",
+    name: "webext-mv3-template",
+    description: "Template for chrome extension(MV3).",
+    version: "1.0.0",
 
     // 谷歌认证配置
     key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs1KkA52w7Oc2J8Jhi7jf4yl3M6ywVj5fA4jLDM6+4GVrx6B6Q0n/sIJmRgnHve+NDdzVI2su+v0s0907Y3r10ZcwPHVaJVGUUWhNZeMc5dhLMh5/JOoYrTS5h/eroHvjwca0qIupKEcdtGzniaKLxeL91VyabCSzkgJJh5+BHYeJNUueQpEbWYbJwFWCkfQpZwzG5thGRwa/cf0cK3r17JMHxJJsJ0P1HTmLyXQILsWceevon1XP7+p8OJkJ9AWhotmnDBH121x9Ug/RIdqo/eBVp+hBzEOwPCPZMAJHgX/poA3PklCr3tl2yzQA2kT6ccq23/FQZvcP6PuBbqzqKQIDAQAB",
@@ -21,11 +21,11 @@ const config = {
 }
 
 export const extContentConfig = {
-    simple_name: 'InsExport',
+    simple_name: 'Webext(MV3)',
     FAQs_page: 'https://savemydayapp.com/export-instagram-following-faq/',
-    service_email: 'IGExport@savemydayapp.com',
+    service_email: 'ext_v3@savemydayapp.com',
     agreement_url: 'https://oneclickbooster.com/terms-of-service/',
-    reportPrefix: 'IGExport',
+    reportPrefix: 'ext_v3',
 }
 
 

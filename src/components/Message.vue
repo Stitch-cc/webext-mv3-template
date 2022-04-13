@@ -24,7 +24,7 @@ const bus = useEventBus('sendMessage');
 bus.on((data) => {
     config.type = data.type;
     config.message = data.message;
-    config.duration = data.duration || 3000;
+    config.duration = data.duration >= 0 ? data.duration : 3000;
     config.show = true;
 });
 </script>
@@ -42,7 +42,7 @@ bus.on((data) => {
 <style lang="scss" scoped>
 .popup-message {
     @apply 'absolute top-6 left-1/2 -z-1 transform -translate-x-1/2 opacity-0';
-    @apply 'box-border space-x-2 px-3 py-1 w-9/10';
+    @apply 'box-border space-x-2 px-3 py-1 flex items-center w-9/10';
     @apply 'border rounded-md text-xs';
     @apply 'svg:(align-text-top)';
     @apply 'transition-all duration-300';
@@ -50,7 +50,7 @@ bus.on((data) => {
     
     &.show-message {
         @apply 'top-12 opacity-100 z-10';
-        @apply 'md:(top-13)'
+        @apply 'md:(top-13)';
     }
 
     &.message-info {

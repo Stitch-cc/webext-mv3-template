@@ -31,7 +31,7 @@ const onclick = async (type) => {
     } else {
         await router.push({
             name: "Export",
-            params: { type, username: username.value },
+            query: { type, username: username.value },
         })
     }
 }

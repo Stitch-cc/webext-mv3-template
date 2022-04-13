@@ -1,9 +1,12 @@
 import { useAxios } from './axios'
+import axiosRetry from 'axios-retry';
 
 const { service, $get, $post } = useAxios();
 service.defaults.baseURL = 'https://api.savemydayapp.com';
 service.defaults.timeout = 5000;
-service.defaults.headers.post["Content-Type"] == 'application/x-www-form-urlencoded'; // ? 上传修改 multipart/form-data; 请求返回JSON格式 Content-Type: application/json;
+service.defaults.headers.post["Content-Type"] == 'application/x-www-form-urlencoded'; // ? 上传修改 multipart/form-data; 请求返回JSON格式 Content-Type: application/json;\
+
+axiosRetry(service, { retries: 3 });
 
 // * 获取插件命获取对应用户信息
 import { getSimpleName } from '../config';
@@ -40,11 +43,15 @@ export async function updateAccount({ email, token, value }) {
 }
 
 export function unsubscribe({ grade, email, token }) {
-    return $post('/user/CancelSubscription', { grade, phone: email, token });
+    return $post('/user/CancelSubscription', { grade, phone: email, token, channel });
 }
 
 export function feedback({ email, message }) {
     return useAxios().$post('https://sctapi.ftqq.com/SCT51636TKNKUrjipLUdCCfukjPZ0PFbN.send', { title: channel + '_' + email, desp: message });
+}
+
+export function getProdList() {
+    return $get('/static/ins.json', {}, { responseType: 'json' });
 }
 
 export function reportLog({ email, name, data }) {
