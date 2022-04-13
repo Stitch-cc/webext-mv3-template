@@ -1,4 +1,4 @@
-import { getSimpleName } from "~/config";
+import { getSimpleName } from "../config";
 import { createGlobalState, useStorage } from "@vueuse/core";
 
 const profile = useGlobalState("profile");
@@ -13,11 +13,21 @@ const setting = useGlobalState("setting", {
     profile_url: { name: "Profile URL", value: true },
     profile_pic_url: { name: "Avatar URL", value: true },
   },
+  hourMaxCounts: 190,
+  todayMaxCounts: 950,
 });
 const cache = useGlobalState("cache", {
-  end_cursor: "",
+  process: {},
   active_count: 0,
   is_recommend: false,
+  // 频率检测字段
+  historyTimestamp: 0,
+  lastTimestamp: 0,
+  todayCounts: 0,
+  hourCounts: 0,
+  isDayReached: false,
+  isHourReached: false,
+  delayTime: 0,
 });
 
 function useGlobalState(name, initialValue = null) {
@@ -51,14 +61,14 @@ export const setCache = (key, value) => (cache.value[key] = value);
 
 // 背景层
 export const getSyncStorage = () => {
-    const extName = getSimpleName();
-    return new Promise((resolve, reject) => {
-        chrome.storage.sync.get([`ext-${extName}-profile`, `ext-${extName}-setting`, `ext-${extName}-cache`], (data) => {
-            resolve({
-                profile: data[`ext-${extName}-profile`],
-                setting: data[`ext-${extName}-setting`],
-                cache: data[`ext-${extName}-cache`],
-            });
-        });
+  const extName = getSimpleName();
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get([`ext-${extName}-profile`, `ext-${extName}-setting`, `ext-${extName}-cache`], (data) => {
+      resolve({
+        profile: data[`ext-${extName}-profile`],
+        setting: data[`ext-${extName}-setting`],
+        cache: data[`ext-${extName}-cache`],
+      });
     });
+  });
 }

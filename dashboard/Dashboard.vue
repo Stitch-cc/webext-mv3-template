@@ -1,12 +1,21 @@
 <script setup>
 // 统计功能
-import { reportLog } from '~/api';
-import { useProfileState } from '~/store';
+import { reportLog, getProfileByEmail } from '~/api';
+import { useProfileState, setProfile } from '~/store';
 import { extContentConfig } from '~/config';
 provide('reportLog', (name, data) => {
     const { email } = useProfileState().value;
     const { reportPrefix } = extContentConfig;
     reportLog({ email, name: `${reportPrefix}_${name}`, data });
+});
+
+onBeforeMount(async () => {
+    const { email, token } = useProfileState().value;
+    const profile = await getProfileByEmail({email, token});
+    if (profile) {
+        console.log("update profile");
+        setProfile(profile);
+    }
 });
 
 const bus = useEventBus('sendMessage');

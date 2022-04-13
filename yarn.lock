@@ -34,6 +34,13 @@
   resolved "https://registry.npmmirror.com/@babel/parser/-/parser-7.17.3.tgz#b07702b982990bf6fdc1da5049a23fece4c5c3d0"
   integrity sha512-7yJPvPV+ESz2IUTPbOL+YkIGyCqOyNIzdguKQuJGnH7bg1WTIifuM21YqokFt/THWh1AkCRn9IgoykTRCBVpzA==
 
+"@babel/runtime@^7.15.4":
+  version "7.17.8"
+  resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.17.8.tgz#3e56e4aff81befa55ac3ac6a0967349fd1c5bca2"
+  integrity sha512-dQpEpK0O9o6lj6oPu0gRDbbnk+4LeHlNcBpspf6Olzt3GIX4P1lWF1gS+pHLDFlaJvbR6q7jCfQ08zA4QJBnmA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@ctrl/tinycolor@^3.4.0":
   version "3.4.0"
   resolved "https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
@@ -73,6 +80,11 @@
     debug "^4.3.3"
     kolorist "^1.5.0"
     local-pkg "^0.4.0"
+
+"@iconify/vue@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.npmmirror.com/@iconify/vue/-/vue-3.2.1.tgz#bd8a2f1213ba8775d4b7a7a8ba895e53ae2f4dfc"
+  integrity sha512-c4R6ZgFo1JrJ8aPMMgOPgfU7lBswihMGR+yWe/P4ZukC3kTkeT4+lkt9Pc/itVFMkwva/S/7u9YofmYv57fnNQ==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -288,6 +300,14 @@ async-validator@^4.0.7:
   version "4.0.7"
   resolved "https://registry.npmmirror.com/async-validator/-/async-validator-4.0.7.tgz#034a0fd2103a6b2ebf010da75183bec299247afe"
   integrity sha512-Pj2IR7u8hmUEDOwB++su6baaRi+QvsgajuFB9j95foM1N2gy5HM4z60hfusIO0fBPG5uLAEl6yCJr1jNSVugEQ==
+
+axios-retry@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.npmmirror.com/axios-retry/-/axios-retry-3.2.4.tgz#f447a53c3456f5bfeca18f20c3a3272207d082ae"
+  integrity sha512-Co3UXiv4npi6lM963mfnuH90/YFLKWWDmoBYfxkHT5xtkSSWNqK9zdG3fw5/CP/dsoKB5aMMJCsgab+tp1OxLQ==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    is-retry-allowed "^2.2.0"
 
 axios@^0.26.0:
   version "0.26.0"
@@ -834,6 +854,11 @@ is-number@^7.0.0:
   resolved "https://registry.npmmirror.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
+is-retry-allowed@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmmirror.com/is-retry-allowed/-/is-retry-allowed-2.2.0.tgz#88f34cbd236e043e71b6932d09b0c65fb7b4d71d"
+  integrity sha512-XVm7LOeLpTW4jV19QSH38vkswxoLud8sQ57YwJVTPWdiaI9I8keEhGFpBlslyVsgdQy4Opg8QOLb8YRgsyZiQg==
+
 is-stream@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmmirror.com/is-stream/-/is-stream-2.0.1.tgz#fac1e3d53b97ad5a9d0ae9cef2389f5810a5c077"
@@ -1110,6 +1135,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+regenerator-runtime@^0.13.4:
+  version "0.13.9"
+  resolved "https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
 resolve@^1.21.0, resolve@^1.22.0:
   version "1.22.0"

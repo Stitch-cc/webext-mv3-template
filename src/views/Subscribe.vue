@@ -75,12 +75,12 @@ async function submitFeedback() {
                 <tr>
                     <td>EXPORT FOLLOWERS</td>
                     <td>≤ 500</td>
-                    <td>≤ 50000</td>
+                    <td>≤ 80000</td>
                 </tr>
                 <tr>
                     <td>EXPORT FOLLOWING</td>
                     <td>≤ 500</td>
-                    <td>≤ 50000</td>
+                    <td>≤ 80000</td>
                 </tr>
             </tbody>
         </table>
@@ -95,7 +95,6 @@ async function submitFeedback() {
                 <span class="text-4xl">{{ sku_list[index].amount }}</span>
                 <span class="text-gray-500">/ {{ index }}</span>
             </div>
-            <p class="font-bold text-red-500">7 days free try pro</p>
             <p class="font-bold text-red-500">7 days money back guarantee</p>
             <Button class="mt-1" type="primary" text="Subscribe" :onclick="onSubscribe">
                 <ic:round-shopping-cart />
@@ -105,7 +104,7 @@ async function submitFeedback() {
                 <a class="text-blue-500" @click="toAgreement">Terms of Service</a>
             </el-checkbox>
             <p class="text-gray-600 text-xs text-center">
-                <ant-design:lock-twotone class="text-green-500 align-text-top" />
+                <ant-design:lock-twotone class="inline-block text-green-500 align-text-top" />
                 <span>
                     We use
                     <strong>Stripe</strong> to process purchases and do not know your coupon details.

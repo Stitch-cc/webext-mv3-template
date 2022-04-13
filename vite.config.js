@@ -37,7 +37,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: {
+      input: isProd && {
         dashboard: resolve(__dirname, 'dashboard', 'index.html')
       }
     }
